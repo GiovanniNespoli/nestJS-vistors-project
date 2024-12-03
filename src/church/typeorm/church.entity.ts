@@ -7,12 +7,12 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Chruch {
+export class Church {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column('text')
-  churhName: string;
+  churchName: string;
 
   @Column('int', { nullable: true })
   visitorsNumber: number;

@@ -1,21 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
-import IChurch from './interface/IChurch';
 import { ICreateChurchDTO } from './dto/IChurchDTO';
 import { Repository } from 'typeorm';
-import { Chruch } from './typeorm/chruch.entity';
+import { Church } from './typeorm/church.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ChurchService {
   constructor(
-    @Inject('CHURCH_REPOSITORY')
-    private churchRepository: Repository<IChurch>,
+    @InjectRepository(Church)
+    private churchRepository: Repository<Church>,
   ) {}
 
-  create(cat: ICreateChurchDTO) {
-    this.churchRepository.create(cat);
-  }
-
-  public async findAll(): Promise<IChurch[]> {
-    return await this.churchRepository.find();
+  async create(data: ICreateChurchDTO): Promise<Church> {
+    const newChurch = this.churchRepository.create(data);
+    return await this.churchRepository.save(newChurch);
   }
 }
