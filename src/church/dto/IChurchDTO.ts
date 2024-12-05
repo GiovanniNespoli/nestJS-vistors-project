@@ -6,4 +6,11 @@ interface ICreateChurchDTO {
   churchMinister?: string;
 }
 
-export { ICreateChurchDTO };
+interface IUpdateChurchDTO {
+  churchName?: string;
+  visitorsNumber?: number;
+  groupLeader?: string;
+  churchMinister?: string;
+}
+
+export { ICreateChurchDTO, IUpdateChurchDTO };
