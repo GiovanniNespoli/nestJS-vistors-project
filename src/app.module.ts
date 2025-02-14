@@ -19,11 +19,14 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.DB_DATABASE,
       entities: [Church, People],
       synchronize: true,
+      extra: {
+        timezone: 'America/Sao_Paulo', 
+      },
     }),
     ChurchModule,
     PeopleModule,
   ],
 })
 export class AppModule {
-  constructor(private dataSource: DataSource) {}
+  constructor(private dataSource: DataSource) { }
 }
